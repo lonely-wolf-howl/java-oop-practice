@@ -5,18 +5,17 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.DisplayName;
+import org.example.calculate.PositiveNumber;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class CalculatorTest {
 
-  @DisplayName("사칙연산을 수행한다.")
   @ParameterizedTest
   @MethodSource("formulaAndResult")
   void operationTest(int a, String operator, int b, int expected) {
-    int result = Calculator.calculate(a, operator, b);
+    int result = Calculator.calculate(new PositiveNumber(a), operator, new PositiveNumber(b));
 
     assertThat(result).isEqualTo(expected);
   }
